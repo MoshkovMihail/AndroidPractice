@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AndroidPractice</string>
+    <string name="FirstActivity">FirstActivity</string>
+    <string name="SecondActivity">SecondActivity</string>
+    <string name="ThirdActivity">ThirdActivity</string>
+    <string name="default2">Экран 2</string>
+    <string name="default3">Экран 3</string>
+
 </resources>
