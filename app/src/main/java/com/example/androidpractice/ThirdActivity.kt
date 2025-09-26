@@ -40,16 +40,17 @@ class ThirdActivity : ComponentActivity() {
         }
     }
 
-@Composable
-private fun MyButton() {
-    Spacer(modifier = Modifier.height(3.dp))
+    @Composable
+    private fun MyButton() {
+        Spacer(modifier = Modifier.height(3.dp))
 
-    Button(onClick = {
-        val intent = Intent(this, FirstActivity::class.java)
-        startActivity(intent)
+        Button(onClick = {
+            val intent = Intent(this, FirstActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+            startActivity(intent)
 
-    }, modifier = Modifier.width(261.dp)) {
-        Text(getString(R.string.FirstActivity))
+        }, modifier = Modifier.width(261.dp)) {
+            Text(getString(R.string.FirstActivity))
+        }
     }
-}
 }
