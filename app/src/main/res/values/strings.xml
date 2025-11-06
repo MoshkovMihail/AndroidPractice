@@ -1,9 +1,22 @@
 <resources>
     <string name="app_name">AndroidPractice</string>
-    <string name="FirstActivity">FirstActivity</string>
-    <string name="SecondActivity">SecondActivity</string>
-    <string name="ThirdActivity">ThirdActivity</string>
+    <string name="FirstScreen">FirstScreen</string>
+    <string name="SecondScreen">SecondScreen</string>
+    <string name="ThirdScreen">ThirdScreen</string>
     <string name="default2">Экран 2</string>
     <string name="default3">Экран 3</string>
-
+    <string name="first_screen_button">Зарегистрироваться</string>
+    <string name="invalid_email">Некорректный формат email</string>
+    <string name="empty_email">Email не может быть пустым</string>
+    <string name="empty_password">Пароль не может быть пустым</string>
+    <string name="to_low_password">Пароль должен содержать минимум 8 символов</string>
+    <string name="email_text_field">Введите email</string>
+    <string name="password_text_field">Введите пароль</string>
+    <string name="third_string_button">Сохранить заметку</string>
+    <string name="empty_title">Название заметки не может быть пустым</string>
+    <string name="second_screen_button">Создать заметку</string>
+    <string name="theme_colour_button">Поменять тему</string>
+    <string name="red_theme">Красная</string>
+    <string name="blue_theme">Синяя</string>
+    <string name="green_theme">Зелёная</string>
 </resources>

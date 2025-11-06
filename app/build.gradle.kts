@@ -53,6 +53,8 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview:1.0.5")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.material3)
     debugImplementation("androidx.compose.ui:ui-tooling:1.0.5")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.5")
     implementation(libs.androidx.core.ktx)
