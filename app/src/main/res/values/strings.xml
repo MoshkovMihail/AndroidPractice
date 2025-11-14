@@ -3,20 +3,59 @@
     <string name="FirstScreen">FirstScreen</string>
     <string name="SecondScreen">SecondScreen</string>
     <string name="ThirdScreen">ThirdScreen</string>
-    <string name="default2">Экран 2</string>
-    <string name="default3">Экран 3</string>
-    <string name="first_screen_button">Зарегистрироваться</string>
-    <string name="invalid_email">Некорректный формат email</string>
-    <string name="empty_email">Email не может быть пустым</string>
-    <string name="empty_password">Пароль не может быть пустым</string>
-    <string name="to_low_password">Пароль должен содержать минимум 8 символов</string>
-    <string name="email_text_field">Введите email</string>
-    <string name="password_text_field">Введите пароль</string>
-    <string name="third_string_button">Сохранить заметку</string>
-    <string name="empty_title">Название заметки не может быть пустым</string>
-    <string name="second_screen_button">Создать заметку</string>
-    <string name="theme_colour_button">Поменять тему</string>
-    <string name="red_theme">Красная</string>
-    <string name="blue_theme">Синяя</string>
-    <string name="green_theme">Зелёная</string>
+    <string name="first_screen_button">Создать уведомление</string>
+    <string name="empty_notification_title">Заголовок уведомления не может быть пустым</string>
+    <string name="notification_title_text_field">Введите заголовок уведомления *</string>
+    <string name="notification_description_text_field">Введите описание уведомления</string>
+    <string name="edit_notifications">Редактировать уведомления</string>
+    <string name="notification_user_messages">Сообщения пользователя</string>
+
+    <!-- FirstScreen -->
+    <string name="notification_settings">Настройки уведомления</string>
+    <string name="title_hint">Заголовок *</string>
+    <string name="title_error">Обязательное поле</string>
+    <string name="text_hint">Текст уведомления</string>
+    <string name="priority_label">Приоритет:</string>
+    <string name="expand_label">Раскрывать уведомление</string>
+    <string name="open_app_label">Открывать приложение</string>
+    <string name="add_reply_label">Добавить кнопку ответа</string>
+    <string name="create_notification">Создать уведомление</string>
+    <string name="enter_title">Введите заголовок</string>
+    <string name="notification_created">Уведомление создано (ID: %d)</string>
+
+    <!-- Priorities -->
+    <string name="priority_min">Минимальный</string>
+    <string name="priority_low">Низкий</string>
+    <string name="priority_medium">Средний</string>
+    <string name="priority_high">Высокий</string>
+    <string name="priority_urgent">Срочный</string>
+
+    <!-- SecondScreen -->
+    <string name="edit_notification">Редактирование уведомления</string>
+    <string name="notification_id_hint">ID уведомления</string>
+    <string name="new_text_hint">Новый текст</string>
+    <string name="update_notification">Обновить уведомление</string>
+    <string name="clear_all">Очистить все уведомления</string>
+    <string name="notification_updated">Уведомление обновлено</string>
+    <string name="notification_not_found">Уведомление не найдено</string>
+    <string name="all_notifications_cleared">Все уведомления удалены</string>
+    <string name="no_notifications">Нет уведомлений</string>
+
+    <!-- ThirdScreen -->
+    <string name="messages">Сообщения</string>
+    <string name="send">Отправить</string>
+    <string name="message_hint">Введите сообщение</string>
+
+    <!-- Notification -->
+    <string name="channel_name">Уведомления</string>
+    <string name="default_text">Текст уведомления</string>
+    <string name="reply_label">Ответ</string>
+    <string name="reply_button">Ответить</string>
+    <string name="reply_saved">Ответ сохранен</string>
+    <string name="updated_notification_title">Обновленное уведомление</string>
+    <string name="notification_title">Уведомление</string>
+
+    <!-- Reply Messages -->
+    <string name="reply_from_notification">Ответ из уведомления: %s</string>
+    <string name="you_said">Вы: %s</string>
 </resources>

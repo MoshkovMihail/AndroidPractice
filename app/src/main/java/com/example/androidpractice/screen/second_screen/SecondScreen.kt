@@ -1,117 +1,112 @@
 package com.example.androidpractice.screen.second_screen
 
+import android.app.NotificationManager
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material.*
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import com.example.androidpractice.navigation.Keys
+import androidx.core.app.NotificationCompat
+import com.example.androidpractice.utils.NotificationCounter
+import com.example.androidpractice.utils.NotificationData
 import com.example.androidpractice.R
 
-import com.example.androidpractice.navigation.SharedData
-import com.example.androidpractice.ui.theme.ThemeController
-
-
-
 @Composable
-fun SecondScreen(navController: NavController, data: SharedData) {
-    val notes = data.notes.value
-    val email = data.userEmail.value
+fun SecondScreen() {
     val context = LocalContext.current
-
+    var notificationId by remember { mutableStateOf("") }
+    var notificationText by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
+        Text(
+            text = stringResource(R.string.edit_notification),
+            style = MaterialTheme.typography.headlineSmall
+        )
 
-        Row {
-            Text("User: $email", Modifier.weight(1f))
-            ThemeSelector()
-        }
+        OutlinedTextField(
+            value = notificationId,
+            onValueChange = { notificationId = it },
+            label = { Text(stringResource(R.string.notification_id_hint)) },
+            modifier = Modifier.fillMaxWidth()
+        )
 
-        LazyColumn(
-            modifier = Modifier.weight(1f)
-        ) {
+        OutlinedTextField(
+            value = notificationText,
+            onValueChange = { notificationText = it },
+            label = { Text(stringResource(R.string.new_text_hint)) },
+            modifier = Modifier.fillMaxWidth()
+        )
 
-            items(notes) { note ->
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 6.dp),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
-                ) {
-                    Column(modifier = Modifier.padding(12.dp)) {
-                        Text(
-                            text = note.title,
-                        )
-                        if (note.description.isNotEmpty()) {
-                            Text(
-                                text = note.description,
-                                style = MaterialTheme.typography.caption
-                            )
-                        }
-                    }
+        Spacer(modifier = Modifier.weight(1f))
+
+        Button(
+            onClick = {
+                val id = notificationId.toIntOrNull()
+                if (id != null && updateNotification(context, id, notificationText)) {
+                    Toast.makeText(context, context.getString(R.string.notification_updated), Toast.LENGTH_SHORT).show()
+                    notificationText = ""
+                } else {
+                    Toast.makeText(context, context.getString(R.string.notification_not_found), Toast.LENGTH_SHORT).show()
                 }
-            }
-
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(stringResource(R.string.update_notification))
         }
 
         Button(
-            onClick = { navController.navigate(Keys.THIRD_SCREEN) },
+            onClick = {
+                if (clearAllNotifications(context)) {
+                    Toast.makeText(context, context.getString(R.string.all_notifications_cleared), Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(context, context.getString(R.string.no_notifications), Toast.LENGTH_SHORT).show()
+                }
+            },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text(context.getString(R.string.second_screen_button))
+            Text(stringResource(R.string.clear_all))
         }
     }
 }
 
-@Composable
-fun ThemeSelector() {
-    var expanded by remember { mutableStateOf(false) }
-    val context = LocalContext.current
+private fun updateNotification(context: Context, id: Int, newText: String): Boolean {
+    val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-
-    Box {
-        Button(onClick = { expanded = true }) {
-            Text(context.getString(R.string.theme_colour_button))
-        }
-
-        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
-            DropdownMenuItem(
-                text = { Text(context.getString(R.string.red_theme)) },
-                onClick = {
-                    ThemeController.currentColor = Color.Red
-                    expanded = false
-                }
-            )
-            DropdownMenuItem(
-                text = { Text(context.getString(R.string.green_theme)) },
-                onClick = {
-                    ThemeController.currentColor = Color.Green
-                    expanded = false
-                }
-            )
-            DropdownMenuItem(
-                text = { Text(context.getString(R.string.blue_theme)) },
-                onClick = {
-                    ThemeController.currentColor = Color.Blue
-                    expanded = false
-                }
-            )
-        }
+    val originalTitle = NotificationData.createdNotifications[id]
+    if (originalTitle == null) {
+        val activeNotifications = notificationManager.activeNotifications
+        if (activeNotifications.none { it.id == id }) return false
     }
+
+    val notification = NotificationCompat.Builder(context, "main_channel")
+        .setSmallIcon(android.R.drawable.ic_dialog_info)
+        .setContentTitle(originalTitle ?: context.getString(R.string.notification_title))
+        .setContentText(newText)
+        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+        .build()
+
+    notificationManager.notify(id, notification)
+    return true
+}
+
+private fun clearAllNotifications(context: Context): Boolean {
+    val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    val hasNotifications = notificationManager.activeNotifications.isNotEmpty()
+
+    notificationManager.cancelAll()
+    NotificationData.createdNotifications.clear()
+    NotificationCounter.reset()
+    return hasNotifications
 }
