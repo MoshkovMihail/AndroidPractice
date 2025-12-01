@@ -1,61 +1,13 @@
 <resources>
     <string name="app_name">AndroidPractice</string>
-    <string name="FirstScreen">FirstScreen</string>
-    <string name="SecondScreen">SecondScreen</string>
-    <string name="ThirdScreen">ThirdScreen</string>
-    <string name="first_screen_button">Создать уведомление</string>
-    <string name="empty_notification_title">Заголовок уведомления не может быть пустым</string>
-    <string name="notification_title_text_field">Введите заголовок уведомления *</string>
-    <string name="notification_description_text_field">Введите описание уведомления</string>
-    <string name="edit_notifications">Редактировать уведомления</string>
-    <string name="notification_user_messages">Сообщения пользователя</string>
-
-    <!-- FirstScreen -->
-    <string name="notification_settings">Настройки уведомления</string>
-    <string name="title_hint">Заголовок *</string>
-    <string name="title_error">Обязательное поле</string>
-    <string name="text_hint">Текст уведомления</string>
-    <string name="priority_label">Приоритет:</string>
-    <string name="expand_label">Раскрывать уведомление</string>
-    <string name="open_app_label">Открывать приложение</string>
-    <string name="add_reply_label">Добавить кнопку ответа</string>
-    <string name="create_notification">Создать уведомление</string>
-    <string name="enter_title">Введите заголовок</string>
-    <string name="notification_created">Уведомление создано (ID: %d)</string>
-
-    <!-- Priorities -->
-    <string name="priority_min">Минимальный</string>
-    <string name="priority_low">Низкий</string>
-    <string name="priority_medium">Средний</string>
-    <string name="priority_high">Высокий</string>
-    <string name="priority_urgent">Срочный</string>
-
-    <!-- SecondScreen -->
-    <string name="edit_notification">Редактирование уведомления</string>
-    <string name="notification_id_hint">ID уведомления</string>
-    <string name="new_text_hint">Новый текст</string>
-    <string name="update_notification">Обновить уведомление</string>
-    <string name="clear_all">Очистить все уведомления</string>
-    <string name="notification_updated">Уведомление обновлено</string>
-    <string name="notification_not_found">Уведомление не найдено</string>
-    <string name="all_notifications_cleared">Все уведомления удалены</string>
-    <string name="no_notifications">Нет уведомлений</string>
-
-    <!-- ThirdScreen -->
-    <string name="messages">Сообщения</string>
-    <string name="send">Отправить</string>
-    <string name="message_hint">Введите сообщение</string>
-
-    <!-- Notification -->
-    <string name="channel_name">Уведомления</string>
-    <string name="default_text">Текст уведомления</string>
-    <string name="reply_label">Ответ</string>
-    <string name="reply_button">Ответить</string>
-    <string name="reply_saved">Ответ сохранен</string>
-    <string name="updated_notification_title">Обновленное уведомление</string>
-    <string name="notification_title">Уведомление</string>
-
-    <!-- Reply Messages -->
-    <string name="reply_from_notification">Ответ из уведомления: %s</string>
-    <string name="you_said">Вы: %s</string>
+    <string name="sequentially_coroutine">Последовательно</string>
+    <string name="parallel_coroutine">Параллельно</string>
+    <string name="cancel_coroutines">Отменить корутину</string>
+    <string name="create_corutine">Создать корутину</string>
+    <string name="start_coroutine_lazily">Запукать корутину отложенно</string>
+    <string name="work_on_background">Работа в бекграунде</string>
+    <string name="error_toast">Произошла ошибка (ToastException)</string>
+    <string name="error_snackbar">Произошла ошибка (SnackbarException)</string>
+    <string name="error_reset">Настройки сброшены по умолчанию</string>
+    <string name="coroutines_cancelled">Отменено корутин: %1$d</string>
 </resources>
