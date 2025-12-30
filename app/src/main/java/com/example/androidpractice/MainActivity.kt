@@ -3,45 +3,47 @@ package com.example.androidpractice
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.androidpractice.ui.theme.AndroidPracticeTheme
+import androidx.compose.material3.MaterialTheme
+import androidx.room.Room
+import com.example.androidpractice.data.local.dao.UserDao
+import com.example.androidpractice.data.local.dao.MemeDao
+import com.example.androidpractice.data.local.db.AppDatabase
+import com.example.androidpractice.data.session.SessionPrefs
+import com.example.androidpractice.ui.navigation.AppNavGraph
 
 class MainActivity : ComponentActivity() {
+
+    lateinit var database: AppDatabase
+        private set
+
+    lateinit var userDao: UserDao
+        private set
+
+    lateinit var memeDao: MemeDao
+        private set
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
+        database = Room.databaseBuilder(
+            applicationContext,
+            AppDatabase::class.java,
+            "app_db"
+        ).build()
+
+        userDao = database.userDao()
+        memeDao = database.memeDao()
+
+        val sessionPrefs = SessionPrefs(applicationContext)
+
         setContent {
-            AndroidPracticeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+            MaterialTheme {
+                AppNavGraph(
+                    userDao = userDao,
+                    memeDao = memeDao,
+                    sessionPrefs = sessionPrefs
+                )
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    AndroidPracticeTheme {
-        Greeting("Android")
     }
 }
